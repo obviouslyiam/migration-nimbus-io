@@ -1,11 +1,5 @@
-:$PORT {
-    root * /app
+:{$PORT:80} {
+    root * /usr/share/caddy
     file_server
     encode gzip
-
-    header {
-        X-Frame-Options "SAMEORIGIN"
-        X-Content-Type-Options "nosniff"
-        X-XSS-Protection "1; mode=block"
-    }
 }
