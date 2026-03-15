@@ -1,84 +1,1160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nimbus.io - Coming Soon</title>
-    <meta name="description" content="Nimbus.io is coming soon. Stay tuned for something amazing.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nimbus — AI-Powered Development Studio</title>
+  <meta name="description" content="One founder. Zero employees. 8 live brands — all built and operated with AI. Nimbus designs, builds, and scales digital products using artificial intelligence.">
+  <meta property="og:title" content="Nimbus — AI-Powered Development Studio">
+  <meta property="og:description" content="One founder. Zero employees. 8 live brands built and operated with AI.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
+    :root {
+      --bg-base:       #0a0a0f;
+      --bg-surface:    #111118;
+      --bg-card:       #16161f;
+      --bg-card-hover: #1c1c28;
+      --border:        rgba(255,255,255,0.07);
+      --border-hover:  rgba(139,92,246,0.4);
+      --text-primary:  #f0f0f5;
+      --text-secondary:#9898b0;
+      --text-muted:    #5a5a72;
+      --purple-400:    #a78bfa;
+      --purple-500:    #8b5cf6;
+      --purple-600:    #7c3aed;
+      --blue-400:      #60a5fa;
+      --blue-500:      #3b82f6;
+      --grad-main:     linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+      --grad-subtle:   linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(59,130,246,0.15) 100%);
+      --radius-card:   12px;
+      --radius-pill:   999px;
+    }
 
-        .container {
-            max-width: 600px;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.02em;
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .tagline {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            opacity: 0.95;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
+    /* ── UTILITIES ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-        .status {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+    .grad-text {
+      background: var(--grad-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-400);
+      margin-bottom: 16px;
+    }
 
-        .dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-            margin-right: 8px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-    </style>
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--grad-main);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      background: var(--grad-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary) !important;
+      background: var(--grad-main);
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(139,92,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--purple-400);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple-400);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--grad-main);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(139,92,246,0.3);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(139,92,246,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: var(--grad-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      padding: 100px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .services-header {
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--bg-surface);
+      padding: 36px 32px;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--grad-subtle);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .service-card:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+
+    .service-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio {
+      padding: 100px 0;
+    }
+
+    .portfolio-header {
+      margin-bottom: 56px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--grad-main);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(139,92,246,0.1);
+    }
+
+    .portfolio-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .card-link-icon {
+      color: var(--text-muted);
+      transition: color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .portfolio-card:hover .card-link-icon {
+      color: var(--purple-400);
+      transform: translate(2px, -2px);
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .tag-live {
+      background: rgba(34,197,94,0.1);
+      color: #4ade80;
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .card-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .metric-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .metric-pill-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--purple-400);
+      flex-shrink: 0;
+    }
+
+    /* ── STORY ── */
+    #story {
+      padding: 100px 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-content p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .story-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .story-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .story-card-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 44px;
+      text-align: center;
+    }
+
+    .story-card-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .story-card-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 100px 0;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .contact-left p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .contact-detail-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(139,92,246,0.1);
+      border: 1px solid rgba(139,92,246,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-detail-text a {
+      color: var(--purple-400);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-text a:hover {
+      color: var(--purple-400);
+      text-decoration: underline;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    input, textarea {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text-primary);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      resize: vertical;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    input:focus, textarea:focus {
+      border-color: rgba(139,92,246,0.5);
+      box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--grad-main);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(139,92,246,0.3);
+      width: 100%;
+    }
+
+    .form-submit:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(139,92,246,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .footer-logo span {
+      background: var(--grad-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-meta a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-meta a:hover {
+      color: var(--text-secondary);
+    }
+
+    .footer-right {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-stats {
+        gap: 24px;
+      }
+
+      .stat-divider {
+        display: none;
+      }
+
+      .story-inner,
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo"><span>Nimbus</span>.io</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#contact" class="nav-cta">Work with us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
     <div class="container">
-        <h1>Nimbus.io</h1>
-        <p class="tagline">Something amazing is in the works.</p>
-        <div class="status">
-            <span class="dot"></span>
-            Coming Soon
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          AI-Powered Development Studio
         </div>
+        <h1 class="hero-title">
+          We build &amp; scale<br>
+          <span class="grad-text">digital products</span><br>
+          with artificial intelligence.
+        </h1>
+        <p class="hero-sub">
+          One founder. Zero employees. Eight live brands — designed, developed, deployed, and marketed with AI. This is what software looks like when you remove the bottlenecks.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn-primary">
+            See what we've built
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#contact" class="btn-ghost">Start a project</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">8</span>
+            <span class="stat-label">Live Brands</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">7,000+</span>
+            <span class="stat-label">Pages Indexed</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">25K+</span>
+            <span class="stat-label">Markets Tracked</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">1</span>
+            <span class="stat-label">Person Team</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-label">What We Build</div>
+        <h2 class="section-title">End-to-end product development</h2>
+        <p class="section-subtitle">From greenfield applications to autonomous content systems — we ship production-grade software fast.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">&#9881;</div>
+          <div class="service-title">Custom Web Applications</div>
+          <p class="service-desc">Next.js, React, full-stack TypeScript. Scalable architecture from day one — not retrofitted later.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128172;</div>
+          <div class="service-title">Telegram &amp; Chat Bots</div>
+          <p class="service-desc">Trading bots, support agents, automation workflows. Live in Telegram with real users and real money.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128140;</div>
+          <div class="service-title">Email Marketing Systems</div>
+          <p class="service-desc">Full-stack email platforms with lead acquisition, segmentation, and delivery — including our own in-house stack.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128269;</div>
+          <div class="service-title">Programmatic SEO at Scale</div>
+          <p class="service-desc">200+ page sites launched in days. Templated content pipelines that rank and compound over time.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128296;</div>
+          <div class="service-title">API Development</div>
+          <p class="service-desc">Data platforms, third-party integrations, real-time pipelines. Built for reliability and developer experience.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#129302;</div>
+          <div class="service-title">AI-Powered Content Systems</div>
+          <p class="service-desc">Autonomous production at scale — structured content that drives traffic without burning human hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="portfolio-header">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">Eight brands. All in production.</h2>
+        <p class="section-subtitle">Not mockups. Not side projects. These are live products with real users, real traffic, and real revenue.</p>
+      </div>
+      <div class="portfolio-grid">
+
+        <a href="https://polyfire.co" target="_blank" rel="noopener noreferrer" class="portfolio-card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">PolyFire.co</div>
+              <span class="card-tag tag-live">Live</span>
+            </div>
+            <svg class="card-link-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H7M12 4v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="card-desc">Polymarket copy-trading bot via Telegram. Follow smart money, automate trades, and track your portfolio in real time.</p>
+          <div class="card-metrics">
+            <span class="metric-pill"><span class="metric-pill-dot"></span>25K+ markets tracked</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>23K wallets indexed</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Telegram bot</span>
+          </div>
+        </a>
+
+        <a href="https://tradesphere.ai" target="_blank" rel="noopener noreferrer" class="portfolio-card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">TradeSphere.ai</div>
+              <span class="card-tag tag-live">Live</span>
+            </div>
+            <svg class="card-link-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H7M12 4v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="card-desc">Prediction market intelligence API for developers and quants. Real-time alpha signals, smart wallet scoring, and market data.</p>
+          <div class="card-metrics">
+            <span class="metric-pill"><span class="metric-pill-dot"></span>20 API endpoints</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>18K+ scored wallets</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Real-time data</span>
+          </div>
+        </a>
+
+        <a href="https://boomsauce.com" target="_blank" rel="noopener noreferrer" class="portfolio-card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">BoomSauce.com</div>
+              <span class="card-tag tag-live">Live</span>
+            </div>
+            <svg class="card-link-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H7M12 4v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="card-desc">Email marketing platform with built-in lead acquisition. Full campaign management, deliverability tooling, and analytics — built in-house.</p>
+          <div class="card-metrics">
+            <span class="metric-pill"><span class="metric-pill-dot"></span>55 API routes</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Lead acquisition</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>In-house platform</span>
+          </div>
+        </a>
+
+        <a href="https://bankingdeal.com" target="_blank" rel="noopener noreferrer" class="portfolio-card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">BankingDeal.com</div>
+              <span class="card-tag tag-live">Live</span>
+            </div>
+            <svg class="card-link-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H7M12 4v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="card-desc">Finance comparison site for banking products. Programmatic SEO driving organic AdSense revenue — no ongoing editorial needed.</p>
+          <div class="card-metrics">
+            <span class="metric-pill"><span class="metric-pill-dot"></span>670 pages</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>AdSense earning</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Programmatic SEO</span>
+          </div>
+        </a>
+
+        <a href="https://insurerocket.com" target="_blank" rel="noopener noreferrer" class="portfolio-card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">InsureRocket.com</div>
+              <span class="card-tag tag-live">Live</span>
+            </div>
+            <svg class="card-link-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H7M12 4v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="card-desc">Medicare comparison site. 1,000+ pages of structured insurance content targeting high-intent search queries at scale.</p>
+          <div class="card-metrics">
+            <span class="metric-pill"><span class="metric-pill-dot"></span>1,000+ pages</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Medicare focus</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Organic SEO</span>
+          </div>
+        </a>
+
+        <a href="https://polypulse.xyz" target="_blank" rel="noopener noreferrer" class="portfolio-card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">PolyPulse.xyz</div>
+              <span class="card-tag tag-live">Live</span>
+            </div>
+            <svg class="card-link-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H7M12 4v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="card-desc">Market intelligence hub for prediction markets. Guides, analysis, and data for traders navigating Polymarket and beyond.</p>
+          <div class="card-metrics">
+            <span class="metric-pill"><span class="metric-pill-dot"></span>5,500+ pages</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>50 guides</span>
+            <span class="metric-pill"><span class="metric-pill-dot"></span>Market intelligence</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="container">
+      <div class="story-inner">
+        <div class="story-content">
+          <div class="section-label">The Story</div>
+          <h2 class="section-title">One person. An AI team.</h2>
+          <p>Every brand in this portfolio was <strong>designed, developed, deployed, and marketed</strong> by a single founder — with AI handling the work that used to require a full team.</p>
+          <p>Not prototypes. Not MVPs waiting for funding. Live products with real infrastructure, real users, and real revenue — running on Vercel, Railway, and DigitalOcean today.</p>
+          <p>The traditional agency model — long timelines, large teams, bloated retainers — is over. <strong>This is what software development looks like now.</strong></p>
+        </div>
+        <div class="story-cards">
+          <div class="story-card">
+            <div class="story-card-icon">&#9889;</div>
+            <div class="story-card-text">
+              <strong>Days, not months</strong>
+              <span>Full-stack products shipped in a fraction of traditional timelines</span>
+            </div>
+          </div>
+          <div class="story-card">
+            <div class="story-card-icon">&#128200;</div>
+            <div class="story-card-text">
+              <strong>Built to scale</strong>
+              <span>Production architecture from day one — not bolted on later</span>
+            </div>
+          </div>
+          <div class="story-card">
+            <div class="story-card-icon">&#128373;</div>
+            <div class="story-card-text">
+              <strong>Zero fluff</strong>
+              <span>No agencies, no bloat, no middlemen — just working software</span>
+            </div>
+          </div>
+          <div class="story-card">
+            <div class="story-card-icon">&#127757;</div>
+            <div class="story-card-text">
+              <strong>Newport Capital LLC</strong>
+              <span>Nimbus is the technology arm of Newport Capital — a private holding company</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <div class="section-label">Contact</div>
+          <h2>Let's build<br><span class="grad-text">something.</span></h2>
+          <p>Have a product idea, a technical problem, or a market to capture? Tell us what you're working on.</p>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">&#9993;</div>
+            <div class="contact-detail-text"><a href="mailto:admin@nimbus.io">admin@nimbus.io</a></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">&#127968;</div>
+            <div class="contact-detail-text">A Newport Capital Company</div>
+          </div>
+        </div>
+        <form action="mailto:admin@nimbus.io" method="get" enctype="text/plain">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">What are you building?</label>
+            <textarea id="message" name="body" placeholder="Give us the pitch. What problem are you solving, and what do you need built?"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            Send message
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo"><span>Nimbus</span>.io</div>
+        <div class="footer-meta">
+          A <a href="https://newportcapital.co" target="_blank" rel="noopener noreferrer">Newport Capital</a> Company
+        </div>
+        <div class="footer-right">&copy; 2026 Nimbus. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
